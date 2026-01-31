@@ -10,6 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3c87427f23864f5f8b8ba4b6390fffd, type: 3}
-  m_Name: New Rythm
+  m_Name: Secuence_1
   m_EditorClassIdentifier: Assembly-CSharp::Rythm
-  Notes: []
+  Notes:
+  - Key: 0
+    index: 0
+    HasPlayed: 0
+  - Key: 0
+    index: 2
+    HasPlayed: 0
+  - Key: 0
+    index: 4
+    HasPlayed: 0
