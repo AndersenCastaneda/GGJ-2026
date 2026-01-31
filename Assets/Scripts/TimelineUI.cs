@@ -6,10 +6,9 @@ public struct Note
 {
     public KeyCode Key;
     public int index;
-    public bool HasPlayed;
 }
 
-public class TestUI : MonoBehaviour
+public class TimelineUI : MonoBehaviour
 {
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip audioClip;
@@ -20,39 +19,26 @@ public class TestUI : MonoBehaviour
 
     private Vector3 _target;
 
-    private GameObject[] _noteObjects;
+    private Transform[] _noteObjects;
 
-    private GameObject _currentNote;
-
-    public Note[] InputKeys;
+    private Transform _currentNote;
 
     public float _distance = 1f;
 
     private int _currentIndex;
-
     private bool _isPlaying = false;
 
-    private void Start()
-    {
-        Setup();
-    }
-
-    private void Setup()
+    public void Setup(Note[] notes)
     {
         _currentIndex = 0;
-        _noteObjects = new GameObject[InputKeys.Length];
+        _noteObjects = new Transform[notes.Length];
 
-        for (int i = 0; i < InputKeys.Length; i++)
+        for (int i = 0; i < notes.Length; i++)
         {
-            InputKeys[i].HasPlayed = false;
-        }
-
-        for (int i = 0; i < InputKeys.Length; i++)
-        {
-            var index = InputKeys[i].index;
+            var index = notes[i].index;
             var noteObject = Instantiate(NotePrefab, _parent);
             noteObject.transform.localPosition = new Vector3(index * _distance, 0, 0);
-            _noteObjects[i] = noteObject;
+            _noteObjects[i] = noteObject.transform;
         }
 
         _currentNote = _noteObjects[_currentIndex];
@@ -69,7 +55,7 @@ public class TestUI : MonoBehaviour
             return;
         }
 
-        if (_currentNote.transform.position.x <= _target.x)
+        if (_currentNote.position.x <= _target.x)
         {
             if (_currentNote.TryGetComponent(out Image image))
             {
