@@ -35,7 +35,7 @@ public class TimelineUI : MonoBehaviour
     private Transform _currentNote;
 
     public float _distance;
-    public float _errorTolerance = 100f;
+    public float _errorTolerance;
 
     private int _currentIndex;
     private bool _isPlaying = false;
