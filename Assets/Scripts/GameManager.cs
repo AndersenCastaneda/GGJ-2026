@@ -24,13 +24,29 @@ public class GameManager : MonoBehaviour
         _timelineUI.Setup(sequence.Notes);
     }
 
+    public void RestartSequence()
+    {
+        _timelineUI.Restart();
+    }
+
     public void StartLevel()
     {
-        _timelineUI.enabled = true;
+        _timelineUI.StartLevel();
     }
 
     public void EndLevel()
     {
         _timelineUI.enabled = false;
+    }
+
+    public void ExampleSequence()
+    {
+        RestartSequence();
+        StartLevel();
+    }
+
+    public void UserSequence()
+    {
+        
     }
 }

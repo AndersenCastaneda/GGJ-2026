@@ -46,9 +46,30 @@ public class TimelineUI : MonoBehaviour
         _isPlaying = true;
     }
 
+    public void Restart()
+    {
+        enabled = false;
+        _currentIndex = 0;
+        _currentNote = _noteObjects[_currentIndex];
+        _isPlaying = false;
+        _parent.localPosition = new Vector3(1100, -270, 0);
+    }
+
+    public void StartLevel()
+    {
+        _isPlaying = true;
+        enabled = true;
+    }
+
     private void Update()
     {
         _parent.localPosition += Vector3.left * (Time.deltaTime * 1500f);
+
+        if (_noteObjects[^1].position.x < _target.x - 300)
+        {
+            enabled = false;
+            return;
+        }
 
         if (!_isPlaying)
         {
@@ -57,10 +78,6 @@ public class TimelineUI : MonoBehaviour
 
         if (_currentNote.position.x <= _target.x)
         {
-            if (_currentNote.TryGetComponent(out Image image))
-            {
-                image.color = Color.red;
-            }
             _audioSource.PlayOneShot(audioClip);
 
             ++_currentIndex;
