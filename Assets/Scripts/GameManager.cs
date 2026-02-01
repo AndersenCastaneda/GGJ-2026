@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Level[] _levels;
     [SerializeField] TimelineUI _timelineUI;
-
+    [SerializeField] InputManager _inputManager;
 
     private int _currentLevel = 0;
     private int _currentSequence = 0;
@@ -32,11 +32,13 @@ public class GameManager : MonoBehaviour
     public void StartLevel()
     {
         _timelineUI.StartLevel();
+        _inputManager.enabled = true;
     }
 
     public void EndLevel()
     {
         _timelineUI.enabled = false;
+        _inputManager.enabled = false;
     }
 
     public void ExampleSequence()

@@ -1,10 +1,19 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right
+}
 
 [System.Serializable]
 public struct Note
 {
-    public KeyCode Key;
+    public Direction Direction;
     public int index;
 }
 
@@ -21,15 +30,19 @@ public class TimelineUI : MonoBehaviour
 
     private Transform[] _noteObjects;
 
+    private Note[] _notes;
+
     private Transform _currentNote;
 
-    public float _distance = 1f;
+    public float _distance;
+    public float _errorTolerance = 70f;
 
     private int _currentIndex;
     private bool _isPlaying = false;
 
     public void Setup(Note[] notes)
     {
+        _notes = notes;
         _currentIndex = 0;
         _noteObjects = new Transform[notes.Length];
 
@@ -87,7 +100,27 @@ public class TimelineUI : MonoBehaviour
                 return;
             }
 
+        }
+
+        // Note: we need this offset to allow the user to press the key a bit later.
+        if (_currentNote.position.x <= _target.x + _errorTolerance)
+        {
             _currentNote = _noteObjects[_currentIndex];
         }
+    }
+
+    public bool IsValidTiming()
+    {
+        return Math.Abs(_currentNote.position.x - _target.x) < _errorTolerance;
+    }
+
+    public Direction GetCurrentDirection()
+    {
+        return _notes[_currentIndex].Direction;
+    }
+
+    public bool IsPlaying()
+    {
+        return _isPlaying;
     }
 }
