@@ -26,18 +26,18 @@ public class GameManager : MonoBehaviour
     {
         RunExampleSequence();
         
-        while (_timelineUI.IsPlaying())
+        while (_timelineUI.enabled)
         {
-            yield return new WaitForSeconds(1f);
+            yield return null;
         }
 
         EndLevel();
 
         RunUserSequence();
 
-        while (_timelineUI.IsPlaying())
+        while (_timelineUI.enabled)
         {
-            yield return new WaitForSeconds(1f);
+            yield return null;
         }
 
         EndLevel();

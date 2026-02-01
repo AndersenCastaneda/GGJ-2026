@@ -27,6 +27,8 @@ public class TimelineUI : MonoBehaviour
     [SerializeField] public RectTransform _targetPosition;
 
     private Vector3 _target;
+    private Vector3 _targetLeftRange;
+    private Vector3 _targetRightRange;
 
     private Transform[] _noteObjects;
 
@@ -56,6 +58,9 @@ public class TimelineUI : MonoBehaviour
 
         _currentNote = _noteObjects[_currentIndex];
         _target = _targetPosition.transform.position;
+        _targetLeftRange = new Vector3(_target.x - _errorTolerance, _target.y, _target.z);
+        _targetRightRange = new Vector3(_target.x + _errorTolerance, _target.y, _target.z);
+
         _isPlaying = true;
     }
 
@@ -102,8 +107,9 @@ public class TimelineUI : MonoBehaviour
 
         }
 
+
         // Note: we need this offset to allow the user to press the key a bit later.
-        if (_currentNote.position.x <= _target.x + _errorTolerance)
+        if (_currentNote.position.x < _targetLeftRange.x)
         {
             _currentNote = _noteObjects[_currentIndex];
         }
@@ -116,7 +122,7 @@ public class TimelineUI : MonoBehaviour
             return false;
         }
 
-        return Math.Abs(_currentNote.position.x - _target.x) < _errorTolerance;
+        return _currentNote.position.x >= _targetLeftRange.x && _currentNote.position.x <= _targetRightRange.x;
     }
 
     public Direction GetValidDirection()
