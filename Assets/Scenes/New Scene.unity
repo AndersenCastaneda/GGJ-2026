@@ -1128,6 +1128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624831870}
   - component: {fileID: 1624831869}
+  - component: {fileID: 1624831871}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1154,6 +1155,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e6f6533e387bf7249ac834fbcbf1f546, type: 2}
     - {fileID: 11400000, guid: f180cd3dba09d8440b29cea56f006900, type: 2}
   _timelineUI: {fileID: 1866462813}
+  _inputManager: {fileID: 1624831871}
 --- !u!4 &1624831870
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,6 +1171,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1624831871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624831868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ceac09d4f71841478316f3d3d73869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputManager
+  _timelineUI: {fileID: 1866462813}
+  _targetRenderer: {fileID: 1566641135}
 --- !u!1 &1634020557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,6 +1631,7 @@ MonoBehaviour:
   _parent: {fileID: 144432421}
   _targetPosition: {fileID: 1566641134}
   _distance: 500
+  _errorTolerance: 70
 --- !u!114 &1866462814
 MonoBehaviour:
   m_ObjectHideFlags: 0
