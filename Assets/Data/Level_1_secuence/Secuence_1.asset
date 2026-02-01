@@ -13,12 +13,9 @@ MonoBehaviour:
   m_Name: Secuence_1
   m_EditorClassIdentifier: Assembly-CSharp::Rythm
   Notes:
-  - Key: 0
+  - Direction: 3
     index: 0
-    HasPlayed: 0
-  - Key: 0
+  - Direction: 3
     index: 2
-    HasPlayed: 0
-  - Key: 0
+  - Direction: 1
     index: 4
-    HasPlayed: 0

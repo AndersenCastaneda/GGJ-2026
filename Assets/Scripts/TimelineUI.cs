@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum Direction
 {
+    None,
     Up,
     Down,
     Left,
@@ -111,11 +111,21 @@ public class TimelineUI : MonoBehaviour
 
     public bool IsValidTiming()
     {
+        if (!_isPlaying || _currentNote == null || _currentIndex >= _notes.Length)
+        {
+            return false;
+        }
+
         return Math.Abs(_currentNote.position.x - _target.x) < _errorTolerance;
     }
 
-    public Direction GetCurrentDirection()
+    public Direction GetValidDirection()
     {
+        if (_notes == null || _currentIndex >= _notes.Length)
+        {
+            return Direction.None;
+        }
+
         return _notes[_currentIndex].Direction;
     }
 
